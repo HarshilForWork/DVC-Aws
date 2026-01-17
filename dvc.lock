@@ -42,7 +42,7 @@ stages:
     params:
       params.yaml:
         feature_engineering:
-          max_features: 9000
+          max_features: 900
           ngram_range:
           - 1
           - 2
@@ -53,16 +53,16 @@ stages:
     outs:
     - path: data/processed/X_test.pkl
       hash: md5
-      md5: daa10b7fb9c8b2bfd9d8c07789673610
-      size: 108469
+      md5: ce3a9f6d64586712b39ca9883452a01e
+      size: 81745
     - path: data/processed/X_train.pkl
       hash: md5
-      md5: 86bb6ba667ee26eab3308fecd88078d2
-      size: 379699
+      md5: ae365b92d4343718971d53f364d9f192
+      size: 256315
     - path: data/processed/tfidf_vectorizer.pkl
       hash: md5
-      md5: 535edb0e34f65527e853333528435813
-      size: 174793
+      md5: 60ede5f6d15df5f2aeb569cf17a75b9a
+      size: 32775
     - path: data/processed/y_test.pkl
       hash: md5
       md5: 5edafb64d647d0dff58fc088a57fa8b6
@@ -76,8 +76,8 @@ stages:
     deps:
     - path: data/processed/X_train.pkl
       hash: md5
-      md5: 86bb6ba667ee26eab3308fecd88078d2
-      size: 379699
+      md5: ae365b92d4343718971d53f364d9f192
+      size: 256315
     - path: data/processed/y_train.pkl
       hash: md5
       md5: 60df6c5d92e6a2ad7d330dae8245b80b
@@ -89,29 +89,29 @@ stages:
     params:
       params.yaml:
         model:
-          type: random_forest
-          n_estimators: 100
-          max_depth:
+          type: logistic_regression
+          C: 1.0
+          max_iter: 1000
     outs:
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: d18abf5ff72c79aec2992b44bba6a04a
-      size: 8013751
+      md5: 11ca5c94cbe760b019dce225c17a7fb1
+      size: 7911
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
     - path: data/processed/X_test.pkl
       hash: md5
-      md5: daa10b7fb9c8b2bfd9d8c07789673610
-      size: 108469
+      md5: ce3a9f6d64586712b39ca9883452a01e
+      size: 81745
     - path: data/processed/y_test.pkl
       hash: md5
       md5: 5edafb64d647d0dff58fc088a57fa8b6
       size: 31631
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: d18abf5ff72c79aec2992b44bba6a04a
-      size: 8013751
+      md5: 11ca5c94cbe760b019dce225c17a7fb1
+      size: 7911
     - path: src/model_evaluation.py
       hash: md5
       md5: afecbe243ca9289ca0a6dfff40e24b50
@@ -119,10 +119,10 @@ stages:
     outs:
     - path: dvclive/plots/metrics
       hash: md5
-      md5: 8147db354cc60f0d32ff3ea481684ea2.dir
-      size: 279
+      md5: 7f1e05c0df397c6ffad2a4733be7da6d.dir
+      size: 295
       nfiles: 9
     - path: metrics/metrics.json
       hash: md5
-      md5: a16e10d9e6ee5d6927cd161d378085f5
-      size: 170
+      md5: 0db99b3479581e654083c11e44eca903
+      size: 186
