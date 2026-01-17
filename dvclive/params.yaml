@@ -8,5 +8,6 @@ feature_engineering:
   - 2
   min_df: 2
 model:
-  type: naive_bayes
-  alpha: 1.0
+  type: random_forest
+  n_estimators: 300
+  max_depth:
