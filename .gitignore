@@ -122,3 +122,10 @@ Thumbs.db
 /data/processed/y_test.pkl
 /data/processed/tfidf_vectorizer.pkl
 /models/spam_classifier.pkl
+.dvc/config.local
+
+# Logs
+logs/*.log
+
+# AWS Credentials
+aws_access_key.txt
