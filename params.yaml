@@ -7,15 +7,15 @@ split:
 
 # Feature engineering parameters
 feature_engineering:
-  max_features: 3000
+  max_features: 700
   ngram_range: [1, 2]  # Unigrams and bigrams
   min_df: 2  # Minimum document frequency
 
 # Model parameters
-model:
-  type: logistic_regression  # Options: logistic_regression, naive_bayes, random_forest, svm
-  C: 1.0
-  max_iter: 1000
+#model:
+#  type: logistic_regression  # Options: logistic_regression, naive_bayes, random_forest, svm
+#  C: 1.0
+#  max_iter: 1000
 
 # Alternative model configurations (uncomment to use)
 # Naive Bayes
@@ -24,10 +24,10 @@ model:
 #   alpha: 1.0
 
 # Random Forest
-# model:
-#   type: random_forest
-#   n_estimators: 100
-#   max_depth: null
+model:
+  type: random_forest
+  n_estimators: 100
+  max_depth: null
 
 # SVM
 # model:

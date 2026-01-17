@@ -7,3 +7,4 @@ dvclive
 matplotlib
 dvc
 dvc[s3]
+nltk

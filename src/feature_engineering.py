@@ -120,8 +120,8 @@ def create_tfidf_features(df: pd.DataFrame, params: dict):
     )
     
     # Prepare features and labels
-    X = df['processed_message']
-    y = df['label']
+    X = df['processed_v2']
+    y = df['v1']
     
     # Split the data
     X_train, X_test, y_train, y_test = train_test_split(

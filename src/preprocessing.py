@@ -9,6 +9,25 @@ import re
 import string
 import logging
 from pathlib import Path
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+
+# Download required NLTK data
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet', quiet=True)
+    
+try:
+    nltk.data.find('corpora/omw-1.4')
+except LookupError:
+    nltk.download('omw-1.4', quiet=True)
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords', quiet=True)
 
 # Setup logging (CLI + File)
 def setup_logger(name, log_file):
@@ -68,9 +87,9 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     logger.info("Cleaning data...")
     
-    # Keep only the first two columns (label and message)
+    # Keep only the first two columns (v1 and v2)
     df = df.iloc[:, :2]
-    df.columns = ['label', 'message']
+    df.columns = ['v1', 'v2']
     
     # Remove duplicates
     initial_rows = len(df)
@@ -81,17 +100,17 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     df = df.dropna()
     logger.info(f"Final dataset shape: {df.shape}")
     
-    # Convert label to binary (ham=0, spam=1)
-    df['label'] = df['label'].map({'ham': 0, 'spam': 1})
+    # Convert v1 to binary (ham=0, spam=1)
+    df['v1'] = df['v1'].map({'ham': 0, 'spam': 1})
     
-    logger.info(f"Label distribution:\n{df['label'].value_counts()}")
+    logger.info(f"v1 distribution:\n{df['v1'].value_counts()}")
     
     return df
 
 
 def preprocess_text(text: str) -> str:
     """
-    Preprocess text by lowercasing, removing special characters and extra spaces
+    Preprocess text by lowercasing, removing special characters, lemmatization
     
     Args:
         text: Input text string
@@ -99,6 +118,9 @@ def preprocess_text(text: str) -> str:
     Returns:
         Preprocessed text string
     """
+    # Initialize lemmatizer
+    lemmatizer = WordNetLemmatizer()
+    
     # Convert to lowercase
     text = text.lower()
     
@@ -117,6 +139,11 @@ def preprocess_text(text: str) -> str:
     # Remove extra whitespace
     text = ' '.join(text.split())
     
+    # Tokenize, lemmatize and rejoin
+    words = text.split()
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
+    text = ' '.join(lemmatized_words)
+    
     return text
 
 
@@ -131,10 +158,10 @@ def preprocess_dataset(df: pd.DataFrame) -> pd.DataFrame:
         DataFrame with preprocessed messages
     """
     logger.info("Preprocessing text data...")
-    df['processed_message'] = df['message'].apply(preprocess_text)
+    df['processed_v2'] = df['v2'].apply(preprocess_text)
     
     # Remove empty messages after preprocessing
-    df = df[df['processed_message'].str.len() > 0]
+    df = df[df['processed_v2'].str.len() > 0]
     
     logger.info(f"Dataset shape after preprocessing: {df.shape}")
     return df
