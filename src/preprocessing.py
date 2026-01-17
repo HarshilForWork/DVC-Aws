@@ -87,9 +87,13 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     logger.info("Cleaning data...")
     
-    # Keep only the first two columns (v1 and v2)
+    # Log original columns
+    logger.info(f"Original columns: {df.columns.tolist()}")
+    
+    # Keep only the first two columns (v1 and v2) and drop extra unnamed columns
     df = df.iloc[:, :2]
     df.columns = ['v1', 'v2']
+    logger.info(f"Kept only v1 and v2 columns. Shape: {df.shape}")
     
     # Remove duplicates
     initial_rows = len(df)
