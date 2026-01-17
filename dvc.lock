@@ -89,14 +89,14 @@ stages:
     params:
       params.yaml:
         model:
-          type: logistic_regression
+          type: svm
           C: 1.0
-          max_iter: 1000
+          kernel: rbf
     outs:
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: 11ca5c94cbe760b019dce225c17a7fb1
-      size: 7911
+      md5: 1aea471507629f026cde01b4f7d51f9d
+      size: 140316
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -110,8 +110,8 @@ stages:
       size: 31631
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: 11ca5c94cbe760b019dce225c17a7fb1
-      size: 7911
+      md5: 1aea471507629f026cde01b4f7d51f9d
+      size: 140316
     - path: src/model_evaluation.py
       hash: md5
       md5: afecbe243ca9289ca0a6dfff40e24b50
@@ -119,10 +119,10 @@ stages:
     outs:
     - path: dvclive/plots/metrics
       hash: md5
-      md5: 7f1e05c0df397c6ffad2a4733be7da6d.dir
-      size: 295
+      md5: 70b136ca28fb63dd5708dc03845ae4bd.dir
+      size: 279
       nfiles: 9
     - path: metrics/metrics.json
       hash: md5
-      md5: 0db99b3479581e654083c11e44eca903
-      size: 186
+      md5: 05f2e967a22840312f8834c19db8829f
+      size: 170

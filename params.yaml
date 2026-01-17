@@ -12,10 +12,10 @@ feature_engineering:
   min_df: 2  # Minimum document frequency
 
 # Model parameters
-model:
-  type: logistic_regression  # Options: logistic_regression, naive_bayes, random_forest, svm
-  C: 1.0
-  max_iter: 1000
+# model:
+#   type: logistic_regression  # Options: logistic_regression, naive_bayes, random_forest, svm
+#   C: 1.0
+#   max_iter: 1000
 
 # Alternative model configurations (uncomment to use)
 # Naive Bayes
@@ -29,8 +29,8 @@ model:
 #   n_estimators: 100
 #   max_depth: null
 
-# SVM
-# model:
-#   type: svm
-#   C: 1.0
-#   kernel: rbf
+#SVM
+model:
+  type: svm
+  C: 1.0
+  kernel: rbf

@@ -8,6 +8,6 @@ feature_engineering:
   - 2
   min_df: 2
 model:
-  type: logistic_regression
+  type: svm
   C: 1.0
-  max_iter: 1000
+  kernel: rbf
