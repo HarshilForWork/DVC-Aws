@@ -30,7 +30,7 @@ feature_engineering:
 #   max_depth: null
 
 #SVM
-# model:
-#   type: svm
-#   C: 1.0
-#   kernel: rbf
+model:
+  type: svm
+  C: 1.0
+  kernel: rbf

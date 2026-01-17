@@ -89,14 +89,14 @@ stages:
     params:
       params.yaml:
         model:
-          type: random_forest
-          n_estimators: 300
-          max_depth:
+          type: svm
+          C: 1.0
+          kernel: rbf
     outs:
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: dcc09835f181c3a07c25900dd3a44984
-      size: 22978485
+      md5: 1aea471507629f026cde01b4f7d51f9d
+      size: 140316
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -110,8 +110,8 @@ stages:
       size: 31631
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: dcc09835f181c3a07c25900dd3a44984
-      size: 22978485
+      md5: 1aea471507629f026cde01b4f7d51f9d
+      size: 140316
     - path: src/model_evaluation.py
       hash: md5
       md5: afecbe243ca9289ca0a6dfff40e24b50
@@ -119,10 +119,10 @@ stages:
     outs:
     - path: dvclive/plots/metrics
       hash: md5
-      md5: b845195f25c9f8061b2eff5f31e61cac.dir
-      size: 295
+      md5: 70b136ca28fb63dd5708dc03845ae4bd.dir
+      size: 279
       nfiles: 9
     - path: metrics/metrics.json
       hash: md5
-      md5: 949347a8c368588c4fb783cec6ef44a6
-      size: 186
+      md5: 05f2e967a22840312f8834c19db8829f
+      size: 170
