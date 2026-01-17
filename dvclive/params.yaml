@@ -8,6 +8,5 @@ feature_engineering:
   - 2
   min_df: 2
 model:
-  type: svm
-  C: 1.0
-  kernel: rbf
+  type: naive_bayes
+  alpha: 1.0

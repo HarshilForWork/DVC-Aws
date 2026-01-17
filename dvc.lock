@@ -89,14 +89,13 @@ stages:
     params:
       params.yaml:
         model:
-          type: svm
-          C: 1.0
-          kernel: rbf
+          type: naive_bayes
+          alpha: 1.0
     outs:
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: 1aea471507629f026cde01b4f7d51f9d
-      size: 140316
+      md5: 3f0f2414edee8d92a3c2d0945d8a63ef
+      size: 29399
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -110,8 +109,8 @@ stages:
       size: 31631
     - path: models/spam_classifier.pkl
       hash: md5
-      md5: 1aea471507629f026cde01b4f7d51f9d
-      size: 140316
+      md5: 3f0f2414edee8d92a3c2d0945d8a63ef
+      size: 29399
     - path: src/model_evaluation.py
       hash: md5
       md5: afecbe243ca9289ca0a6dfff40e24b50
@@ -119,10 +118,10 @@ stages:
     outs:
     - path: dvclive/plots/metrics
       hash: md5
-      md5: 70b136ca28fb63dd5708dc03845ae4bd.dir
-      size: 279
+      md5: 5371d3854ee5262f674be68dde43ed47.dir
+      size: 293
       nfiles: 9
     - path: metrics/metrics.json
       hash: md5
-      md5: 05f2e967a22840312f8834c19db8829f
-      size: 170
+      md5: 26f682c5f5a54d37fc417ad395dcc29f
+      size: 184

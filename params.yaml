@@ -19,9 +19,9 @@ feature_engineering:
 
 # Alternative model configurations (uncomment to use)
 # Naive Bayes
-# model:
-#   type: naive_bayes
-#   alpha: 1.0
+model:
+  type: naive_bayes
+  alpha: 1.0
 
 # Random Forest
 # model:
@@ -30,7 +30,7 @@ feature_engineering:
 #   max_depth: null
 
 #SVM
-model:
-  type: svm
-  C: 1.0
-  kernel: rbf
+# model:
+#   type: svm
+#   C: 1.0
+#   kernel: rbf
